@@ -31,6 +31,8 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var logInButton: UIButton!
 
     var completionHandler: ((_ userName: String?, _ password: String?, _ returnCode: LogInViewControllerReturnCode) -> Void)?
+    
+    var cloudKitCompletionHandler: ((_ userAccessToken: String?, _ error: Error?) -> Void)?
 
     override func viewDidLoad() {
         userNameTextField.addTarget(self, action: #selector(updateUI), for: .editingChanged)
@@ -78,6 +80,8 @@ extension LogInViewController {
                     }
                 }
             }
+        } else if let viewController = segue.destination as? CloudKitAuthViewController {
+            viewController.completionHandler = cloudKitCompletionHandler
         }
     }
 

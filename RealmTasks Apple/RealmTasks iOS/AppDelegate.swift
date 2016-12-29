@@ -54,6 +54,26 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
+        logInViewController.cloudKitCompletionHandler = { userAccessToken, error in
+            if let error = error {
+                self.presentError(error: error as NSError)
+            } else {
+                guard let userAccessToken = userAccessToken else {
+                    // unknown error
+                    DispatchQueue.main.async {
+                        self.logIn()
+                    }
+                    return
+                }
+                authenticate(cloudKitUserAccessToken: userAccessToken) { error in
+                    if let error = error {
+                        self.presentError(error: error as NSError)
+                    } else {
+                        self.window?.rootViewController = ContainerViewController()
+                    }
+                }
+            }
+        }
         window?.rootViewController?.present(logInViewController, animated: false, completion: nil)
     }
 

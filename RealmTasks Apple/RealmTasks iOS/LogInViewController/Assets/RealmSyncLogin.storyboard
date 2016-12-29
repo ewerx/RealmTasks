@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11760" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="rJr-HE-H8k">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="rJr-HE-H8k">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11755"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -65,6 +65,14 @@
                                 <state key="normal" title="Log In"/>
                                 <connections>
                                     <action selector="logInSender:" destination="rJr-HE-H8k" eventType="touchUpInside" id="AtB-NQ-kzy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PGk-iq-hjj">
+                                <rect key="frame" x="119" y="395" width="137" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Log In with CloudKit"/>
+                                <connections>
+                                    <segue destination="Yz1-Tg-IDp" kind="presentation" id="CNA-iZ-N9r"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -182,5 +190,118 @@
             </objects>
             <point key="canvasLocation" x="1291" y="573"/>
         </scene>
+        <!--Cloud Kit Auth View Controller-->
+        <scene sceneID="iGo-8p-sH6">
+            <objects>
+                <viewController id="Yz1-Tg-IDp" customClass="CloudKitAuthViewController" customModule="RealmTasks" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4Mt-Y5-deA"/>
+                        <viewControllerLayoutGuide type="bottom" id="ki7-Wz-tmO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Wft-Z7-YdW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iQg-1w-KIE">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJf-sW-sP5">
+                                        <rect key="frame" x="135" y="618" width="105" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="105" id="6hB-I4-ufr"/>
+                                            <constraint firstAttribute="height" constant="30" id="V9t-K3-Jhd"/>
+                                        </constraints>
+                                        <state key="normal" title="iCloud Settings"/>
+                                        <connections>
+                                            <action selector="cloudKitButtonTappedWithSender:" destination="Yz1-Tg-IDp" eventType="touchUpInside" id="d5S-hc-tdp"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nK1-MS-ViB" userLabel="ContainerView">
+                                        <rect key="frame" x="33" y="208" width="310" height="251"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iCloudLogo" translatesAutoresizingMaskIntoConstraints="NO" id="5P1-bc-UNP">
+                                                <rect key="frame" x="91" y="8" width="128" height="100"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="4DB-fg-MkE"/>
+                                                    <constraint firstAttribute="width" constant="128" id="XSt-u0-X1u"/>
+                                                </constraints>
+                                            </imageView>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="mhG-Hi-iKx">
+                                                <rect key="frame" x="137" y="123" width="37" height="37"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="37" id="Ji4-wd-b9g"/>
+                                                    <constraint firstAttribute="width" constant="37" id="mdI-xc-lJC"/>
+                                                </constraints>
+                                                <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </activityIndicatorView>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Account Found." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRc-23-CRw">
+                                                <rect key="frame" x="13" y="185" width="289" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="Jox-Dy-P06"/>
+                                                    <constraint firstAttribute="width" constant="289" id="hn0-8Z-ANa"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oZm-KU-jJS" userLabel="ReloadButton">
+                                                <rect key="frame" x="145" y="130" width="19" height="22"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="22" id="K4W-tw-7Uh"/>
+                                                    <constraint firstAttribute="width" constant="19" id="fTz-bN-MGq"/>
+                                                </constraints>
+                                                <state key="normal" image="ReloadIcon"/>
+                                                <connections>
+                                                    <action selector="reloadButtonTappedWithSender:" destination="Yz1-Tg-IDp" eventType="touchUpInside" id="HPY-zl-teE"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="310" id="Kjw-8W-Kv9"/>
+                                            <constraint firstItem="5P1-bc-UNP" firstAttribute="top" secondItem="nK1-MS-ViB" secondAttribute="top" constant="8" id="Tcz-Oi-6Jk"/>
+                                            <constraint firstAttribute="height" constant="251" id="aBl-2X-nWX"/>
+                                            <constraint firstItem="5P1-bc-UNP" firstAttribute="centerX" secondItem="nK1-MS-ViB" secondAttribute="centerX" id="aj2-Ka-7uQ"/>
+                                            <constraint firstItem="oZm-KU-jJS" firstAttribute="top" secondItem="5P1-bc-UNP" secondAttribute="bottom" constant="22" id="chF-9a-ciF"/>
+                                            <constraint firstItem="mhG-Hi-iKx" firstAttribute="centerX" secondItem="nK1-MS-ViB" secondAttribute="centerX" id="eo0-I9-Bvf"/>
+                                            <constraint firstItem="MRc-23-CRw" firstAttribute="centerX" secondItem="mhG-Hi-iKx" secondAttribute="centerX" constant="2" id="fBH-fd-rGN"/>
+                                            <constraint firstItem="MRc-23-CRw" firstAttribute="top" secondItem="mhG-Hi-iKx" secondAttribute="bottom" constant="25" id="ioq-Zf-pMg"/>
+                                            <constraint firstItem="mhG-Hi-iKx" firstAttribute="top" secondItem="5P1-bc-UNP" secondAttribute="bottom" constant="15" id="qkK-w3-jRj"/>
+                                            <constraint firstItem="oZm-KU-jJS" firstAttribute="centerX" secondItem="nK1-MS-ViB" secondAttribute="centerX" id="zJG-NY-ycc"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="nK1-MS-ViB" firstAttribute="centerY" secondItem="iQg-1w-KIE" secondAttribute="centerY" constant="-0.5" id="6zI-8j-exL"/>
+                                    <constraint firstItem="nK1-MS-ViB" firstAttribute="centerX" secondItem="iQg-1w-KIE" secondAttribute="centerX" id="G88-yb-Tbi"/>
+                                    <constraint firstItem="OJf-sW-sP5" firstAttribute="centerX" secondItem="iQg-1w-KIE" secondAttribute="centerX" id="qkn-Ps-yoy"/>
+                                    <constraint firstAttribute="bottom" secondItem="OJf-sW-sP5" secondAttribute="bottom" constant="19" id="wyb-gP-MsT"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="iQg-1w-KIE" secondAttribute="trailing" id="4zd-qy-ZKK"/>
+                            <constraint firstItem="ki7-Wz-tmO" firstAttribute="top" secondItem="iQg-1w-KIE" secondAttribute="bottom" id="CjD-Yi-1JL"/>
+                            <constraint firstItem="iQg-1w-KIE" firstAttribute="top" secondItem="Wft-Z7-YdW" secondAttribute="top" id="F0A-uD-ojb"/>
+                            <constraint firstItem="iQg-1w-KIE" firstAttribute="leading" secondItem="Wft-Z7-YdW" secondAttribute="leading" id="dsh-Gg-Ami"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="mhG-Hi-iKx" id="tN1-UU-Pzo"/>
+                        <outlet property="reloadButton" destination="oZm-KU-jJS" id="7Uh-ry-Rem"/>
+                        <outlet property="settingsButton" destination="OJf-sW-sP5" id="d5n-Un-RAu"/>
+                        <outlet property="statusLabel" destination="MRc-23-CRw" id="BSC-62-YbB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mFM-9s-5W4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="988" y="1294"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="ReloadIcon" width="19" height="22"/>
+        <image name="iCloudLogo" width="128" height="86"/>
+    </resources>
 </document>

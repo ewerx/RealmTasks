@@ -98,6 +98,17 @@ func authenticate(username: String, password: String, register: Bool, callback: 
     }
 }
 
+func authenticate(cloudKitUserAccessToken: String, callback: @escaping (NSError?) -> Void) {
+    let credential = SyncCredentials.cloudKit(token: cloudKitUserAccessToken)
+    SyncUser.logIn(with: credential, server: Constants.syncAuthURL) { user, error in
+        if let user = user {
+            setDefaultRealmConfigurationWithUser(user: user)
+        }
+        
+        callback(error as? NSError)
+    }
+}
+
 private extension NSError {
 
     convenience init(error: NSError, description: String?, recoverySuggestion: String?) {
