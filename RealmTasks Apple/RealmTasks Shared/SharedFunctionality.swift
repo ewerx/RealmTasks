@@ -101,11 +101,13 @@ func authenticate(username: String, password: String, register: Bool, callback: 
 func authenticate(cloudKitUserAccessToken: String, callback: @escaping (NSError?) -> Void) {
     let credential = SyncCredentials.cloudKit(token: cloudKitUserAccessToken)
     SyncUser.logIn(with: credential, server: Constants.syncAuthURL) { user, error in
-        if let user = user {
-            setDefaultRealmConfigurationWithUser(user: user)
+        DispatchQueue.main.async {
+            if let user = user {
+                setDefaultRealmConfigurationWithUser(user: user)
+            }
+            
+            callback(error as? NSError)
         }
-        
-        callback(error as? NSError)
     }
 }
 
